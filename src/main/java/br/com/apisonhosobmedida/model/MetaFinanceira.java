@@ -1,5 +1,6 @@
 package br.com.apisonhosobmedida.model;
 
+import java.time.LocalDate;
 import java.util.*;
 import jakarta.persistence.*;
 
@@ -12,12 +13,12 @@ public class MetaFinanceira {
     private Long id;
     private String descricao;
     private Double valor;
-    private Date dataInicio;
-    private Date dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     
     public MetaFinanceira() {};   
     
-    public MetaFinanceira(String descricao, Double valor, Date dataInicio, Date dataFim) {
+    public MetaFinanceira(String descricao, Double valor, LocalDate dataInicio, LocalDate dataFim) {
         this.descricao = descricao;
         this.valor = valor;
         this.dataInicio = dataInicio;
@@ -33,9 +34,11 @@ public class MetaFinanceira {
     public Date getDataFim() { return dataFim; }
 
     @Override
-    public boolean equals(Object meta) {
-        if ( )
-        return super.equals(meta);
+    public boolean equals(Object obj) {
+        if ( this == obj ) return true;
+        if ( obj == null || getClass() != obj.getClass() ) return  false;
+        MetaFinanceira meta = (MetaFinanceira) obj;
+        return descricao.equals(meta.descricao);
     }
 
     @Override
