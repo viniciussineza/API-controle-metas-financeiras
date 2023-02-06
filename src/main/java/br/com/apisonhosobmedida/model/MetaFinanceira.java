@@ -15,6 +15,8 @@ public class MetaFinanceira {
     private Double valor;
     private LocalDate dataInicio;
     private LocalDate dataFim;
+
+    private Boolean ativo;
     
     public MetaFinanceira() {};   
     
@@ -25,13 +27,21 @@ public class MetaFinanceira {
         this.dataFim = dataFim;
     }
 
+    public MetaFinanceira(DadosCadastroMeta dados) {
+        this.ativo = true;
+        this.descricao = dados.descricao();
+        this.valor = dados.valor();
+        this.dataInicio = dados.dataInicio();
+        this.dataFim = dados.dataFim();
+    }
+
     public String getDescricao() { return descricao; }
 
     public Double getValor() { return valor; }
 
-    public Date getDataInicio() { return dataInicio; }
+    public LocalDate getDataInicio() { return dataInicio; }
 
-    public Date getDataFim() { return dataFim; }
+    public LocalDate getDataFim() { return dataFim; }
 
     @Override
     public boolean equals(Object obj) {
