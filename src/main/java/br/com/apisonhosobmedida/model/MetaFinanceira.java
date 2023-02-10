@@ -1,11 +1,12 @@
 package br.com.apisonhosobmedida.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "metas-finaneciras")
+@Table(name = "metas_financeiras")
 public class MetaFinanceira {
 
     @Id
@@ -19,7 +20,8 @@ public class MetaFinanceira {
     private Boolean ativo;
     
     public MetaFinanceira() {};   
-    
+
+    // IF dataInicio is blank, then get now()
     public MetaFinanceira(String descricao, Double valor, LocalDate dataInicio, LocalDate dataFim) {
         this.descricao = descricao;
         this.valor = valor;
