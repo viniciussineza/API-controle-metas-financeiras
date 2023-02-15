@@ -9,7 +9,7 @@ Aplicação
 # Tecnologias
 
 ![java sdk 17](https://img.icons8.com/color/96/null/java-coffee-cup-logo--v1.png)
-![mysql](https://img.icons8.com/color/96/null/mysql-logo.png)
+![sql server](https://img.icons8.com/color/96/null/microsoft-sql-server.png)
 ![docker](https://img.icons8.com/color/96/null/docker.png)
 ![ubuntu](https://img.icons8.com/color/96/null/ubuntu--v1.png)
 

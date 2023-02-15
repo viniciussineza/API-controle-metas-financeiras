@@ -1,6 +1,6 @@
 //package br.com.apisonhosobmedida.util;
 //
-//import br.com.apisonhosobmedida.model.MetaFinanceira;
+//import br.com.apisonhosobmedida.model.metaFinanceira.MetaFinanceira;
 //import br.com.apisonhosobmedida.repository.MetaFinanceiraRepository;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;

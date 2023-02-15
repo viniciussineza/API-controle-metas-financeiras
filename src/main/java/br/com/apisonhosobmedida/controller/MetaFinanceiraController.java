@@ -1,7 +1,7 @@
 package br.com.apisonhosobmedida.controller;
 
-import br.com.apisonhosobmedida.model.DadosCadastroMeta;
-import br.com.apisonhosobmedida.model.MetaFinanceira;
+import br.com.apisonhosobmedida.model.metaFinanceira.DadosCadastroMeta;
+import br.com.apisonhosobmedida.model.metaFinanceira.MetaFinanceira;
 import br.com.apisonhosobmedida.repository.MetaFinanceiraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
