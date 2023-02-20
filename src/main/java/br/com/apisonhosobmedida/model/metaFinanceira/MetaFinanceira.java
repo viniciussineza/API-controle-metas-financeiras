@@ -4,12 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
-import br.com.apisonhosobmedida.controller.CategoriaController;
 import br.com.apisonhosobmedida.model.categoria.Categoria;
 import br.com.apisonhosobmedida.model.produto.Produto;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "metas_financeiras")
@@ -23,32 +20,30 @@ public class MetaFinanceira implements Serializable {
     private Long cod_meta;
     @Column(name = "descricao", unique = true)
     private String descricao;
-    private Long cod_categoria;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cod_categoria")
+    private Categoria categoria;
     @Column(insertable = false, updatable = false)
     private Double valorTotal;
     @Column(name = "data_inicio")
     private LocalDate dataInicio;
     @Column(name = "data_fim")
     private LocalDate dataFim;
-    private Boolean status;
-    private Produto produto;
-    private Categoria categoria;
+    private Integer status;
     
     public MetaFinanceira() {};   
 
     // IF dataInicio is blank, then get now()
     // IF Meta não tem produtos
     public MetaFinanceira(DadosCadastroMeta dados) {
-        this.status = true;
+        this.status = 1;
         this.descricao = dados.descricao();
-        this.cod_categoria = categoria.getNomeCategoria( dados.categoria() );
         this.dataInicio = LocalDate.parse(dados.dataInicio(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.dataFim = LocalDate.parse(dados.dataFim(), DateTimeFormatter.ofPattern("dd/MM/yyyy" ));
-        this.produto = new Produto( dados.produto() );
     }
 
     public void desativarMeta() {
-        this.status = false;
+        this.status = 0;
     }
 
     public String getDescricao() { return descricao; }

@@ -2,13 +2,13 @@ package br.com.apisonhosobmedida.controller;
 
 import br.com.apisonhosobmedida.model.categoria.Categoria;
 import br.com.apisonhosobmedida.model.categoria.DadosCadastroCategoria;
+import br.com.apisonhosobmedida.model.categoria.DadosListagemCategoria;
 import br.com.apisonhosobmedida.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 
 @RestController
 @RequestMapping("/categoria")
@@ -24,8 +24,8 @@ public class CategoriaController {
     }
 
     @GetMapping
-    public List<Categoria> listar() {
-        return repository.findAll();
+    public Page<DadosListagemCategoria> listar( Pageable page ) {
+        return repository.findAll( page ).map( DadosListagemCategoria::new );
     }
 
 

@@ -20,9 +20,6 @@ public record DadosCadastroMeta(
 
         @NotNull
         @NotEmpty
-        String dataFim,
-
-        @Valid
-        DadosCadastroProduto produto
+        String dataFim
 
 ) { }

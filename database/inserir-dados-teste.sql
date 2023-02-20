@@ -48,60 +48,72 @@ INSERT INTO produtos
 (
     nome_produto,
     valor,
-    cod_meta
+    cod_meta,
+    cod_categoria
 ) VALUES 
 ( 
     'Monitor Gamer',
     2000.00,
+    1,
     1
 ),
 (
     'Placa de vídeo RGB',
     3000.00,
+    1,
     1
 ),
 (
     'Memória 32 mb',
     1000.00,
+    1,
     1
 ),
 (
     'Cabo de rede',
     10.00,
+    1,
     1
 ),
 (
     'Passagens Spaceland',
     300.00,
+    2,
     2
 ),
 (
     'Hospedagem',
     500.00,
+    2,
     2
 ),
 (
     'Transporte',
     200.00,
+    2,
     2
 ),
 (
     'Escritura',
     1000.00,
+    3,
     3
 ),
 (
     'Apartamento',
     300000.00,
+    3,
     3
 ),
 (
     'Livros técnicos',
     1000.00,
+    4,
     4
 ),
 (
     'Pós graduação',
     50000.00,
+    4,
     4
 );
