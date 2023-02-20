@@ -1,6 +1,7 @@
 package br.com.apisonhosobmedida.model.metaFinanceira;
 
 import br.com.apisonhosobmedida.model.categoria.DadosCadastroCategoria;
+import br.com.apisonhosobmedida.model.produto.DadosCadastroProduto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
@@ -19,9 +20,9 @@ public record DadosCadastroMeta(
 
         @NotNull
         @NotEmpty
-        String dataFim
+        String dataFim,
 
-//        @Valid
-//        Produto produto
+        @Valid
+        DadosCadastroProduto produto
 
 ) { }

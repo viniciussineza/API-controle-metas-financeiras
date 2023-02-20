@@ -1,10 +1,13 @@
 package br.com.apisonhosobmedida.model.categoria;
 
+import br.com.apisonhosobmedida.controller.CategoriaController;
 import br.com.apisonhosobmedida.model.metaFinanceira.MetaFinanceira;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,10 +23,8 @@ public class Categoria implements Serializable {
     private Long cod_categoria;
     private String nome_categoria;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private MetaFinanceira meta;
-
+    @Autowired
+    private CategoriaController controller;
     public Categoria ( ) {}
 
     public Categoria ( DadosCadastroCategoria dados ) {
@@ -36,6 +37,16 @@ public class Categoria implements Serializable {
 
     public String getNome_categoria() {
         return nome_categoria;
+    }
+
+    public Long getNomeCategoria( DadosCadastroCategoria dadoCategoria ) {
+        List<Categoria> categorias = controller.listar();
+        Long codigoCategoria = null;
+        for ( Categoria categoria : categorias ) {
+            if ( categoria.getNome_categoria().equals(dadoCategoria.nome_categoria()))
+                codigoCategoria = categoria.getCod_categoria();
+        }
+        return codigoCategoria;
     }
 
     @Override

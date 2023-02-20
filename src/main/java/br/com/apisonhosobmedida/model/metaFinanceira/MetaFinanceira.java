@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import br.com.apisonhosobmedida.controller.CategoriaController;
 import br.com.apisonhosobmedida.model.categoria.Categoria;
 import br.com.apisonhosobmedida.model.produto.Produto;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "metas_financeiras")
@@ -16,12 +19,11 @@ public class MetaFinanceira implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( insertable = false, updatable = false, unique = true)
     private Long cod_meta;
     @Column(name = "descricao", unique = true)
     private String descricao;
-    @OneToOne
-    @MapsId
-    private Categoria categoria;
+    private Long cod_categoria;
     @Column(insertable = false, updatable = false)
     private Double valorTotal;
     @Column(name = "data_inicio")
@@ -29,15 +31,8 @@ public class MetaFinanceira implements Serializable {
     @Column(name = "data_fim")
     private LocalDate dataFim;
     private Boolean status;
-
-    //Implementar relação entre meta e produto e cadastrar todos de uma vez
-    @OneToMany(mappedBy = "meta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Produto> produtos = new HashSet<>();
-
-    public void addProduto( Produto produto ) {
-        produtos.add( produto );
-        produto.
-    }
+    private Produto produto;
+    private Categoria categoria;
     
     public MetaFinanceira() {};   
 
@@ -46,11 +41,11 @@ public class MetaFinanceira implements Serializable {
     public MetaFinanceira(DadosCadastroMeta dados) {
         this.status = true;
         this.descricao = dados.descricao();
-        this.categoria = new Categoria( dados.categoria() );
+        this.cod_categoria = categoria.getNomeCategoria( dados.categoria() );
         this.dataInicio = LocalDate.parse(dados.dataInicio(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.dataFim = LocalDate.parse(dados.dataFim(), DateTimeFormatter.ofPattern("dd/MM/yyyy" ));
+        this.produto = new Produto( dados.produto() );
     }
-
 
     public void desativarMeta() {
         this.status = false;
